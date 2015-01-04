@@ -1,5 +1,6 @@
 var React    = require('react');
 var Todo     = require('./todo');
+
 var TodoList = React.createClass({
 
   todoOnClick: function(item){
@@ -10,9 +11,13 @@ var TodoList = React.createClass({
     var _todos = this.props.todos;
     return(
       _todos.map(function(t){
-      var _i = _todos.indexOf(t);
+      var _index = _todos.indexOf(t);
         return(
-          <Todo ref={_i} key={_i} index={_todos.indexOf(t)} texte={t.texte} onclick={this.todoOnClick}/>
+          <Todo ref    = {_index}
+                key    = {_index}
+                index  = {_todos.indexOf(t)}
+                texte  = {t.texte}
+                onclick= {this.todoOnClick} />
         )
       }.bind(this))
     );
@@ -20,11 +25,13 @@ var TodoList = React.createClass({
 
   render: function(){
     return(
-      <div>
-      <hr />
-      todos : {this.props.todos.length}
-      <hr />
-      {this.showTodos()}
+      <div className='todolist'>
+        <div className='header'>
+          todos : {this.props.todos.length}
+        </div>
+        <div className='todos'>
+          {this.showTodos()}
+        </div>
       </div>
     )
   }
