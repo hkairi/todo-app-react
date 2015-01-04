@@ -1,0 +1,6 @@
+div#main{
+  width:800px;
+  min-height: 300px;
+  margin:50px auto;
+  border: 1px solid #A3ABAC;
+}
