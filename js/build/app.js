@@ -11,9 +11,13 @@ var React = require('react');
 
 var Todo = React.createClass({displayName: "Todo",
 
+  onClick: function(){
+    this.props.onclick(this.props.index);
+  },
+
   render: function(){
     return(
-      React.createElement("p", {key: this.props.key, className: "todo"}, 
+      React.createElement("p", {key: this.props.key, className: "todo", onClick: this.onClick}, 
       React.createElement("input", {ref: this.props.ref, type: "checkbox"}), 
       this.props.texte
       )
@@ -29,6 +33,7 @@ var React = require('react');
 var TodoList = require('./todolist');
 
 var TodoApp = React.createClass({displayName: "TodoApp",
+
   getInitialState: function(){
     return {
       todos : []
@@ -47,6 +52,14 @@ var TodoApp = React.createClass({displayName: "TodoApp",
     });
   },
 
+  todoClick: function(item){
+    var _todos =  this.state.todos;
+    var _item  = _todos[item];
+    _todos.pop(_item);
+    this.setState({
+      todos: _todos
+    });
+  },
 
   render: function(){
     return(
@@ -54,7 +67,7 @@ var TodoApp = React.createClass({displayName: "TodoApp",
         React.createElement("h1", null, "todo-app-react.js"), 
         React.createElement("input", {ref: "todo", type: "text", placeholder: "something to do ?"}), 
         React.createElement("button", {onClick: this.onClick}, "Ok"), 
-        React.createElement(TodoList, {todos: this.state.todos})
+        React.createElement(TodoList, {todos: this.state.todos, onTodoClick: this.todoClick})
       )
     );
   }
@@ -67,17 +80,22 @@ var React    = require('react');
 var Todo     = require('./todo');
 var TodoList = React.createClass({displayName: "TodoList",
 
+  todoOnClick: function(item){
+    this.props.onTodoClick(item);
+  },
+
   showTodos: function(){
     var _todos = this.props.todos;
     return(
       _todos.map(function(t){
       var _i = _todos.indexOf(t);
         return(
-          React.createElement(Todo, {ref: _i, key: _i, texte: t.texte})
+          React.createElement(Todo, {ref: _i, key: _i, index: _todos.indexOf(t), texte: t.texte, onclick: this.todoOnClick})
         )
       }.bind(this))
     );
   },
+
   render: function(){
     return(
       React.createElement("div", null, 
