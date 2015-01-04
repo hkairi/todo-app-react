@@ -90,7 +90,11 @@ var TodoList = React.createClass({displayName: "TodoList",
       _todos.map(function(t){
       var _i = _todos.indexOf(t);
         return(
-          React.createElement(Todo, {ref: _i, key: _i, index: _todos.indexOf(t), texte: t.texte, onclick: this.todoOnClick})
+          React.createElement(Todo, {ref: _i, 
+                key: _i, 
+                index: _todos.indexOf(t), 
+                texte: t.texte, 
+                onclick: this.todoOnClick})
         )
       }.bind(this))
     );
@@ -99,10 +103,8 @@ var TodoList = React.createClass({displayName: "TodoList",
   render: function(){
     return(
       React.createElement("div", null, 
-      React.createElement("hr", null), 
-      "todos : ", this.props.todos.length, 
-      React.createElement("hr", null), 
-      this.showTodos()
+        "todos : ", this.props.todos.length, 
+        this.showTodos()
       )
     )
   }

@@ -2,11 +2,12 @@ var React    = require('react');
 var Todo     = require('./todo');
 
 var TodoList = React.createClass({
-
+  // to be removed ... will be using this.props.onTodoClick directly on the Todo
   todoOnClick: function(item){
     this.props.onTodoClick(item);
   },
 
+  // show todos
   showTodos: function(){
     var _todos = this.props.todos;
     return(
