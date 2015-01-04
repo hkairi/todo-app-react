@@ -22,7 +22,13 @@ var TodoApp = React.createClass({
   showTodos: function(){
     return(
       this.state.todos.map(function(t){
-        return <p key={this.state.todos.indexOf(t)}>{t.texte}</p>
+      var _i = this.state.todos.indexOf(t);
+        return(
+          <p key={_i}>
+            <input ref={_i} type='checkbox' />
+            {t.texte}
+          </p>
+        )
       }.bind(this))
     );
   },

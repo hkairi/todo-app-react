@@ -10,10 +10,48 @@ React.render(
 var React = require('react');
 
 var TodoApp = React.createClass({displayName: "TodoApp",
+  getInitialState: function(){
+    return {
+      todos : []
+    };
+  },
+
+  onClick: function(){
+    var _todo = this.refs.todo.getDOMNode();
+    var _todos= this.state.todos;
+    _todos.push({ texte: _todo.value, done: false });
+
+    _todo.value = '';
+
+    this.setState({
+      todos: _todos
+    });
+  },
+
+  showTodos: function(){
+    return(
+      this.state.todos.map(function(t){
+      var _i = this.state.todos.indexOf(t);
+        return(
+          React.createElement("p", {key: _i}, 
+            React.createElement("input", {ref: _i, type: "checkbox"}), 
+            t.texte
+          )
+        )
+      }.bind(this))
+    );
+  },
+
   render: function(){
     return(
       React.createElement("div", {className: "main-app"}, 
-        React.createElement("h1", null, " ici l'application quoi")
+        React.createElement("h1", null, "todo-app-react.js"), 
+        React.createElement("input", {ref: "todo", type: "text", placeholder: "something to do ?"}), 
+        React.createElement("button", {onClick: this.onClick}, "Ok"), 
+        React.createElement("hr", null), 
+        "todos : ", this.state.todos.length, 
+        React.createElement("hr", null), 
+        this.showTodos()
       )
     );
   }
