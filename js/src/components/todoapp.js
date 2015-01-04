@@ -30,7 +30,7 @@ var TodoApp = React.createClass({
   render: function(){
     return(
       <div className='main-app'>
-        <h1> ici l'application quoi</h1>
+        <h1>todo-app-react.js</h1>
         <input ref='todo' type="text" placeholder="something to do ?" />
         <button onClick={this.onClick}>Ok</button>
         <hr />
