@@ -16,3 +16,11 @@ button{
   padding:6px;
   font-size: 19px;
 }
+input[type='checkbox']{
+  border:1px solid #A3ABAC;
+  margin:3px;
+  padding:2px;
+}
+p.todo{
+  height:20px;
+}
