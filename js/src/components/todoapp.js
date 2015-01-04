@@ -1,5 +1,7 @@
 var React = require('react');
 
+var TodoList = require('./todolist');
+
 var TodoApp = React.createClass({
   getInitialState: function(){
     return {
@@ -19,19 +21,6 @@ var TodoApp = React.createClass({
     });
   },
 
-  showTodos: function(){
-    return(
-      this.state.todos.map(function(t){
-      var _i = this.state.todos.indexOf(t);
-        return(
-          <p key={_i}>
-            <input ref={_i} type='checkbox' />
-            {t.texte}
-          </p>
-        )
-      }.bind(this))
-    );
-  },
 
   render: function(){
     return(
@@ -39,10 +28,7 @@ var TodoApp = React.createClass({
         <h1>todo-app-react.js</h1>
         <input ref='todo' type="text" placeholder="something to do ?" />
         <button onClick={this.onClick}>Ok</button>
-        <hr />
-        todos : {this.state.todos.length}
-        <hr />
-        {this.showTodos()}
+        <TodoList todos={this.state.todos} />
       </div>
     );
   }
