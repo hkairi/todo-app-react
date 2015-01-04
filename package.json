@@ -5,8 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "browserify -t reactify js/src/app.js -o js/build/app.js"
+    "start": "browserify -t reactify js/src/app.js -o js/build/app.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^8.0.3",
+    "react": "^0.12.2",
+    "reactify": "^0.17.1",
+    "underscore": "^1.7.0"
+  }
 }
