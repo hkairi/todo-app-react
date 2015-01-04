@@ -1,5 +1,5 @@
-var React = require('react');
-
+var React    = require('react');
+var Todo     = require('./todo');
 var TodoList = React.createClass({
 
   showTodos: function(){
@@ -8,10 +8,7 @@ var TodoList = React.createClass({
       _todos.map(function(t){
       var _i = _todos.indexOf(t);
         return(
-          <p key={_i} className='todo'>
-            <input ref={_i} type='checkbox' />
-            {t.texte}
-          </p>
+          <Todo ref={_i} key={_i} texte={t.texte}/>
         )
       }.bind(this))
     );
